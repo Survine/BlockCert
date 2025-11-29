@@ -1,4 +1,4 @@
-console.log("🟢 ROUTE FILE IS LOADING...");
+console.log("ROUTE FILE IS LOADING...");
 
 
 // routes/docRoutes.js

@@ -1,5 +1,5 @@
 
-console.log("🟢 SERVER.JS IS STARTING...");
+console.log("SERVER.JS IS STARTING...");
 // server.js
 const express = require('express');
 const cors = require('cors');
@@ -18,5 +18,5 @@ app.use('/api/docs', docRoutes);
 // 4. Start the Server
 const PORT = 5000;
 app.listen(PORT, () => {
-  console.log(`🚀 Kitchen is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });

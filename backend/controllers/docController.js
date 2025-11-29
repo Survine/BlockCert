@@ -24,7 +24,7 @@ const uploadDocument = async (req, res) => {
         const hexHash = getFileHash(req.file.path);
 
         // --- NEW: UPLOAD TO IPFS (PINATA) ---
-        console.log("🚀 Uploading to Pinata IPFS...");
+        console.log("Uploading to Pinata IPFS...");
         
         // We create a "Stream" (like a water hose) to send the file data
         const readableStreamForFile = fs.createReadStream(req.file.path);
@@ -38,7 +38,7 @@ const uploadDocument = async (req, res) => {
         const result = await pinata.pinFileToIPFS(readableStreamForFile, options);
         const ipfsHash = result.IpfsHash; // This is the CID (Content Identifier)
 
-        console.log(`✅ File pinned to IPFS! CID: ${ipfsHash}`);
+        console.log(`File pinned to IPFS! CID: ${ipfsHash}`);
         // ------------------------------------
 
         // Blockchain Connection (Write)
@@ -82,13 +82,13 @@ const verifyDocument = async (req, res) => {
         if (isValid) {
             res.status(200).json({ 
                 status: "Valid", 
-                message: "✅ This document is AUTHENTIC.",
+                message: "This document is AUTHENTIC.",
                 digitalFingerprint: hexHash
             });
         } else {
             res.status(200).json({ 
                 status: "Invalid", 
-                message: "❌ This document is FAKE or has been tampered with.",
+                message: "This document is FAKE or has been tampered with.",
                 digitalFingerprint: hexHash
             });
         }

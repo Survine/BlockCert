@@ -73,7 +73,6 @@ const Verifier = () => {
       {status === 'success' && result && (
         <div className={`mt-8 p-4 border rounded-lg animate-fade-in-up ${result.status === 'Valid' ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
           <div className="flex items-center mb-2">
-            <span className="text-2xl mr-2">{result.status === 'Valid' ? '✅' : '❌'}</span>
             <h3 className={`font-bold ${result.status === 'Valid' ? 'text-green-800' : 'text-red-800'}`}>
               {result.message}
             </h3>

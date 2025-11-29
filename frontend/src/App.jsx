@@ -12,7 +12,7 @@ function App() {
       {/* Navigation Bar */}
       <nav className="bg-white shadow-md p-4">
         <div className="max-w-4xl mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-blue-600">🎓 BlockCert</h1>
+          <h1 className="text-2xl font-bold text-blue-600">BlockCert</h1>
           <div className="space-x-4">
             <button 
               onClick={() => setView('issuer')}

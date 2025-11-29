@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/badge/Solidity-0.8.28-363636?style=for-the-badge&logo=solidity" alt="Solidity"/>
 </p>
 
-<h1 align="center">🎓 BlockCert - Blockchain Credential Verification System</h1>
+<h1 align="center">BlockCert - Blockchain Credential Verification System</h1>
 
 <p align="center">
   <strong>A tamper-proof, decentralized document verification platform combining blockchain technology, cryptographic security, and modern web technologies to combat credential fraud.</strong>
@@ -22,7 +22,7 @@
 
 ---
 
-## 📑 Table of Contents
+## Table of Contents
 
 - [Overview](#-overview)
 - [Problem Statement](#-problem-statement)
@@ -40,7 +40,7 @@
 
 ---
 
-## 📖 Overview
+## Overview
 
 **BlockCert** is a full-stack decentralized application (dApp) designed to address the critical global problem of document fraud. With over **500 million fake documents** circulating annually, this platform provides organizations with a secure way to issue tamper-proof digital credentials and enables instant verification by anyone, anywhere.
 
@@ -52,20 +52,20 @@ The system leverages:
 
 ---
 
-## 🎯 Problem Statement
+## Problem Statement
 
 This project addresses a **critical global problem** where over **500 million fake documents** circulate annually, causing significant losses to educational institutions, corporations, and government sectors.
 
-### 📊 The Scale of the Problem
+### The Scale of the Problem
 
 | Metric | Impact |
 |--------|--------|
-| 🔴 **Annual Fraud Volume** | 500+ million counterfeit documents globally |
-| ⏱️ **Verification Time** | 7-10 days for manual verification |
-| 📉 **Falsification Rate** | ~60% of job applicants have false credentials |
-| 💰 **Economic Impact** | Billions lost annually due to credential fraud |
+| **Annual Fraud Volume** | 500+ million counterfeit documents globally |
+| **Verification Time** | 7-10 days for manual verification |
+| **Falsification Rate** | ~60% of job applicants have false credentials |
+| **Economic Impact** | Billions lost annually due to credential fraud |
 
-### ❌ Key Problems Identified
+### Key Problems Identified
 
 | Problem | Description |
 |---------|-------------|
@@ -79,25 +79,25 @@ This project addresses a **critical global problem** where over **500 million fa
 
 ---
 
-## ✅ Solution
+## Solution
 
 BlockCert provides a comprehensive solution to credential fraud:
 
 | Feature | Benefit |
 |---------|---------|
-| ✅ **Immutable Proof** | Credentials stored on blockchain cannot be altered or deleted |
-| ✅ **Instant Verification** | Anyone can verify a document in seconds, not days |
-| ✅ **Decentralized Storage** | Documents persist on IPFS, immune to single points of failure |
-| ✅ **Tamper Detection** | Any modification to the document invalidates its cryptographic hash |
-| ✅ **Global Accessibility** | Verify credentials from anywhere in the world, 24/7 |
-| ✅ **Cost Effective** | Eliminates expensive manual verification processes |
-| ✅ **Standardized Process** | Uniform verification across all institutions |
+| **Immutable Proof** | Credentials stored on blockchain cannot be altered or deleted |
+| **Instant Verification** | Anyone can verify a document in seconds, not days |
+| **Decentralized Storage** | Documents persist on IPFS, immune to single points of failure |
+| **Tamper Detection** | Any modification to the document invalidates its cryptographic hash |
+| **Global Accessibility** | Verify credentials from anywhere in the world, 24/7 |
+| **Cost Effective** | Eliminates expensive manual verification processes |
+| **Standardized Process** | Uniform verification across all institutions |
 
 ---
 
-## ✨ Features
+## Features
 
-### 🏛️ Organization Portal (Issuer)
+### Organization Portal (Issuer)
 - Upload PDF certificates/credentials
 - Automatic SHA-256 hash generation
 - Pin documents to IPFS via Pinata
@@ -105,13 +105,13 @@ BlockCert provides a comprehensive solution to credential fraud:
 - Receive IPFS CID for document retrieval
 - Transaction confirmation and hash display
 
-### 🔍 Verifier Portal
+### Verifier Portal
 - Upload any document to verify authenticity
 - Compare document hash against blockchain records
 - Instant valid/invalid feedback
 - View document digital fingerprint
 
-### 🔐 Smart Contract
+### Smart Contract
 - Gas-efficient credential storage
 - Public verification function
 - Event emission for off-chain indexing
@@ -119,7 +119,7 @@ BlockCert provides a comprehensive solution to credential fraud:
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
@@ -156,7 +156,7 @@ BlockCert provides a comprehensive solution to credential fraud:
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 | Technology | Version | Purpose |
@@ -184,7 +184,7 @@ BlockCert provides a comprehensive solution to credential fraud:
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### Prerequisites
 
@@ -240,7 +240,7 @@ npx hardhat ignition deploy ./ignition/modules/CredentialVerifier.js --network s
 
 ---
 
-## 🚀 Usage
+## Usage
 
 ### Start the Backend Server
 
@@ -269,7 +269,7 @@ npm run blockchain  # Starts Hardhat local node
 
 ---
 
-## 📡 API Reference
+## API Reference
 
 ### Base URL
 ```
@@ -315,7 +315,7 @@ Content-Type: multipart/form-data
 ```json
 {
   "status": "Valid",
-  "message": "✅ This document is AUTHENTIC.",
+  "message": "This document is AUTHENTIC.",
   "digitalFingerprint": "a3f2b8c9d1e4..."
 }
 ```
@@ -324,14 +324,14 @@ Content-Type: multipart/form-data
 ```json
 {
   "status": "Invalid",
-  "message": "❌ This document is FAKE or has been tampered with.",
+  "message": "This document is FAKE or has been tampered with.",
   "digitalFingerprint": "b4e3c9a2f1d5..."
 }
 ```
 
 ---
 
-## 📜 Smart Contract
+## Smart Contract
 
 ### Contract Address (Sepolia)
 ```
@@ -356,7 +356,7 @@ event DocumentVerified(string documentHash, uint256 timestamp)
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 blockchain/
@@ -390,23 +390,23 @@ blockchain/
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
-### Version 1.0 (Current) ✅
+### Version 1.0 (Current)
 - [x] Basic credential issuance
 - [x] Document verification
 - [x] IPFS storage integration
 - [x] Sepolia testnet deployment
 - [x] React frontend with Tailwind CSS
 
-### Version 1.1 (In Progress) 🚧
+### Version 1.1 (In Progress)
 - [ ] User authentication (JWT/OAuth)
 - [ ] Credential expiration dates
 - [ ] Batch credential issuance
 - [ ] QR code generation for credentials
 - [ ] Email notifications
 
-### Version 2.0 (Planned) 📋
+### Version 2.0 (Planned)
 - [ ] Multi-chain support (Polygon, BSC)
 - [ ] Credential templates
 - [ ] Organization dashboard with analytics
@@ -414,7 +414,7 @@ blockchain/
 - [ ] Mobile responsive improvements
 - [ ] Dark mode support
 
-### Version 3.0 (Future) 🔮
+### Version 3.0 (Future)
 - [ ] Mobile applications (iOS/Android)
 - [ ] API rate limiting and authentication
 - [ ] Credential sharing via shareable links
@@ -425,7 +425,7 @@ blockchain/
 ---
 
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - [Ethereum Foundation](https://ethereum.org/) - Blockchain platform
 - [Hardhat](https://hardhat.org/) - Development environment
@@ -436,7 +436,7 @@ blockchain/
 ---
 
 <p align="center">
-  Made with ❤️ for the decentralized future
+  Made with care for the decentralized future
 </p>
 
 

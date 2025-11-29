@@ -39,7 +39,7 @@ const Issuer = () => {
     return (
         <div className="bg-white shadow-lg rounded-xl p-8 max-w-lg mx-auto border border-gray-100">
             <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold text-gray-800">Organization Portal 🏛️</h2>
+                <h2 className="text-3xl font-bold text-gray-800">Organization Portal</h2>
                 <p className="text-gray-500 mt-2">Issue a new credential to the Blockchain</p>
             </div>
 
@@ -65,14 +65,13 @@ const Issuer = () => {
                 disabled={status === "uploading" || !file}
                 className={`w-full py-3 px-4 rounded-lg text-white font-bold transition-all shadow-md
           ${status === "uploading" ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700 hover:shadow-lg transform hover:-translate-y-0.5"}`}>
-                {status === "uploading" ? "Issuing to Blockchain... ⏳" : "Issue Credential 🚀"}
+                {status === "uploading" ? "Issuing to Blockchain..." : "Issue Credential"}
             </button>
 
             {/* Success Message */}
             {status === "success" && result && (
                 <div className="mt-8 p-4 bg-green-50 border border-green-200 rounded-lg animate-fade-in-up">
                     <div className="flex items-center mb-2">
-                        <span className="text-2xl mr-2">✅</span>
                         <h3 className="font-bold text-green-800">Credential Issued & Pinned!</h3>
                     </div>
                     <div className="text-sm text-green-700 space-y-2 overflow-hidden">
@@ -89,7 +88,7 @@ const Issuer = () => {
                                 <span className="font-semibold">IPFS CID:</span> {result.ipfsCID}
                             </p>
                             <a href={`https://gateway.pinata.cloud/ipfs/${result.ipfsCID}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-xs font-bold mt-1 inline-block">
-                                View on Decentralized Web 🌍
+                                View on Decentralized Web
                             </a>
                         </div>
 
@@ -101,7 +100,7 @@ const Issuer = () => {
             )}
 
             {/* Error Message */}
-            {status === "error" && <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">❌ Error issuing credential. Check console for details.</div>}
+            {status === "error" && <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">Error issuing credential. Check console for details.</div>}
         </div>
     );
 };
