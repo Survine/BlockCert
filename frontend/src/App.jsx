@@ -28,10 +28,10 @@ function App() {
             <span className="font-semibold tracking-tight text-lg">BlockCert</span>
           </div>
           
-          <div className="hidden md:flex items-center gap-8 text-xs font-medium text-gray-500">
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-500">
             <button onClick={() => document.getElementById('features').scrollIntoView({ behavior: 'smooth' })} className="hover:text-black transition-colors">Features</button>
             <button onClick={() => document.getElementById('portals').scrollIntoView({ behavior: 'smooth' })} className="hover:text-black transition-colors">Portals</button>
-            <button className="bg-black text-white px-4 py-1.5 rounded-full hover:bg-gray-800 transition-transform active:scale-95">Get Started</button>
+            <button onClick={() => document.getElementById('portals').scrollIntoView({ behavior: 'smooth' })} className="bg-black text-white px-4 py-1.5 rounded-full hover:bg-gray-800 transition-transform active:scale-95">Get Started</button>
           </div>
         </div>
       </nav>
