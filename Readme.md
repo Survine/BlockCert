@@ -99,11 +99,18 @@ BlockCert provides a comprehensive solution to credential fraud:
 
 ### Organization Portal (Issuer)
 - Upload PDF certificates/credentials
+- Specify student wallet address for credential binding
 - Automatic SHA-256 hash generation
 - Pin documents to IPFS via Pinata
-- Record credential hash on Ethereum blockchain
-- Receive IPFS CID for document retrieval
+- Record credential hash, IPFS CID, and student address on Ethereum blockchain
 - Transaction confirmation and hash display
+
+### Student Portal
+- Access credentials via wallet address lookup
+- View complete academic credential history
+- Direct IPFS links to original documents
+- Timestamp display for each issued credential
+- Permanent, tamper-proof academic records
 
 ### Verifier Portal
 - Upload any document to verify authenticity
@@ -112,6 +119,8 @@ BlockCert provides a comprehensive solution to credential fraud:
 - View document digital fingerprint
 
 ### Smart Contract
+- Credential struct storing hash, IPFS CID, and timestamp
+- Student-to-credential mapping for ownership
 - Gas-efficient credential storage
 - Public verification function
 - Event emission for off-chain indexing
@@ -143,15 +152,21 @@ BlockCert provides a comprehensive solution to credential fraud:
 
 1. **Issuing a Credential:**
    ```
-   User uploads PDF → Backend generates SHA-256 hash → 
-   File pinned to IPFS → Hash recorded on blockchain → 
+   User uploads PDF + Student Wallet Address -> Backend generates SHA-256 hash -> 
+   File pinned to IPFS -> Hash, CID & Student Address recorded on blockchain -> 
    User receives CID + Transaction Hash
    ```
 
 2. **Verifying a Credential:**
    ```
-   User uploads PDF → Backend generates SHA-256 hash → 
-   Hash checked against blockchain → Valid/Invalid result returned
+   User uploads PDF -> Backend generates SHA-256 hash -> 
+   Hash checked against blockchain -> Valid/Invalid result returned
+   ```
+
+3. **Student Credential Lookup:**
+   ```
+   Student enters wallet address -> Contract returns all credentials -> 
+   Display list with IPFS links and timestamps
    ```
 
 ---
@@ -160,10 +175,12 @@ BlockCert provides a comprehensive solution to credential fraud:
 
 ### Frontend
 | Technology | Version | Purpose |
-|------------|---------|---------|
+|------------|---------|----------|
 | React | 19.x | UI Framework |
 | Vite | 7.x | Build Tool |
 | Tailwind CSS | 4.x | Styling |
+| Framer Motion | 11.x | Animations |
+| Lucide React | - | Icons |
 | Axios | 1.x | HTTP Client |
 
 ### Backend
@@ -288,11 +305,12 @@ Content-Type: multipart/form-data
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `certificate` | `file` | PDF file to issue |
+| `studentAddress` | `string` | Ethereum wallet address of the student |
 
 **Response:**
 ```json
 {
-  "message": "Certificate Issued, Pinned to IPFS & Secured on Blockchain!",
+  "message": "Certificate Issued!",
   "filename": "certificate.pdf",
   "digitalFingerprint": "a3f2b8c9d1e4...",
   "ipfsCID": "QmXoYp...",
@@ -329,6 +347,29 @@ Content-Type: multipart/form-data
 }
 ```
 
+#### Get Student Credentials
+
+```http
+GET /student/:address
+```
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `address` | `string` | Ethereum wallet address of the student |
+
+**Response:**
+```json
+{
+  "certificates": [
+    {
+      "documentHash": "a3f2b8c9d1e4...",
+      "ipfsCID": "QmXoYp...",
+      "timestamp": "1732900000"
+    }
+  ]
+}
+```
+
 ---
 
 ## Smart Contract
@@ -341,17 +382,30 @@ Content-Type: multipart/form-data
 ### Key Functions
 
 ```solidity
-// Issue a new credential (write hash to blockchain)
-function issueCredential(string memory _hash) public
+// Issue a new credential (write hash, CID, and student to blockchain)
+function issueCredential(string memory _hash, string memory _ipfsCID, address _student) public
 
 // Verify a credential (check if hash exists)
 function verifyCredential(string memory _hash) public view returns (bool)
+
+// Get all credentials for a student
+function getCertificates(address _student) public view returns (Credential[] memory)
+```
+
+### Structs
+
+```solidity
+struct Credential {
+    string documentHash;
+    string ipfsCID;
+    uint256 timestamp;
+}
 ```
 
 ### Events
 
 ```solidity
-event DocumentVerified(string documentHash, uint256 timestamp)
+event DocumentVerified(string documentHash, string ipfsCID, uint256 timestamp)
 ```
 
 ---
@@ -377,9 +431,10 @@ blockchain/
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── Issuer.jsx            # Issuer portal
+│   │   │   ├── Issuer.jsx            # Organization portal
+│   │   │   ├── Student.jsx           # Student credential vault
 │   │   │   └── Verifier.jsx          # Verifier portal
-│   │   ├── App.jsx                   # Main app component
+│   │   ├── App.jsx                   # Main app with landing page
 │   │   └── main.jsx                  # Entry point
 │   ├── index.html
 │   ├── vite.config.js
@@ -393,11 +448,13 @@ blockchain/
 ## Roadmap
 
 ### Version 1.0 (Current)
-- [x] Basic credential issuance
+- [x] Basic credential issuance with student wallet binding
 - [x] Document verification
 - [x] IPFS storage integration
+- [x] Student portal for credential lookup
 - [x] Sepolia testnet deployment
-- [x] React frontend with Tailwind CSS
+- [x] Modern React frontend with Framer Motion animations
+- [x] Landing page with feature showcase
 
 ### Version 1.1 (In Progress)
 - [ ] User authentication (JWT/OAuth)

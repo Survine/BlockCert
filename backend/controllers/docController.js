@@ -21,7 +21,7 @@ const uploadDocument = async (req, res) => {
     try {
         const hexHash = getFileHash(req.file.path);
         
-        console.log("🚀 Uploading to Pinata IPFS...");
+        console.log("Uploading to Pinata IPFS...");
         const readableStreamForFile = fs.createReadStream(req.file.path);
         const options = { pinataMetadata: { name: req.file.originalname } };
         const result = await pinata.pinFileToIPFS(readableStreamForFile, options);
@@ -68,9 +68,9 @@ const verifyDocument = async (req, res) => {
         const isValid = await contract.verifyCredential(hexHash);
 
         if (isValid) {
-            res.status(200).json({ status: "Valid", message: "✅ Document is AUTHENTIC.", digitalFingerprint: hexHash });
+            res.status(200).json({ status: "Valid", message: "Document is AUTHENTIC.", digitalFingerprint: hexHash });
         } else {
-            res.status(200).json({ status: "Invalid", message: "❌ Document is FAKE.", digitalFingerprint: hexHash });
+            res.status(200).json({ status: "Invalid", message: "Document is FAKE.", digitalFingerprint: hexHash });
         }
 
     } catch (error) {
