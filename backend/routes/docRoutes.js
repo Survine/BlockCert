@@ -29,4 +29,6 @@ router.post('/upload', upload.single('certificate'), docController.uploadDocumen
 // 2. Verify (Read from Blockchain)
 router.post('/verify', upload.single('certificate'), docController.verifyDocument);
 
+router.get('/student/:address', docController.fetchStudent);
+
 module.exports = router;

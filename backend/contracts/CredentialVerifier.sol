@@ -1,30 +1,51 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.28; // We use a modern version
+pragma solidity ^0.8.28;
 
 contract CredentialVerifier {
     
-    // 1. THE STORAGE (The Stone Tablet)
-    // We map a "Digital Fingerprint" (string) to a "Boolean" (true/false)
-    // If a hash is in here, it means it is VALID.
-    mapping(string => bool) private documents;
-
-    // 2. THE EVENT (The Town Crier)
-    // When we add a document, we shout it out so the world knows.
-    event DocumentVerified(string documentHash, uint256 timestamp);
-
-    // 3. THE FUNCTION (The Chisel)
-    // Only we can call this to add a new document.
-    function issueCredential(string memory _hash) public {
-        // Write it to the blockchain
-        documents[_hash] = true;
-
-        // Shout it out
-        emit DocumentVerified(_hash, block.timestamp);
+    // 1. DEFINE THE STRUCTURE (New!)
+    // We group the Hash and the CID together into one object
+    struct Credential {
+        string documentHash;
+        string ipfsCID;
+        uint256 timestamp;
     }
 
-    // 4. THE VERIFIER (The Reader)
-    // Anyone can call this to check if a document is real.
+    // 2. Verification Ledger
+    mapping(string => bool) private documents;
+
+    // 3. Student Ledger
+    // CHANGED: We now store a list of 'Credential' objects, not just strings
+    mapping(address => Credential[]) private studentCredentials;
+
+    event DocumentVerified(string documentHash, string ipfsCID, uint256 timestamp);
+
+    // 4. ISSUE CREDENTIAL
+    // CHANGED: We now need the '_ipfsCID' as an input too!
+    function issueCredential(string memory _hash, string memory _ipfsCID, address _student) public {
+        documents[_hash] = true;
+        
+        // Create the new object
+        Credential memory newCert = Credential({
+            documentHash: _hash,
+            ipfsCID: _ipfsCID,
+            timestamp: block.timestamp
+        });
+
+        // Add it to the student's list
+        studentCredentials[_student].push(newCert);
+        
+        emit DocumentVerified(_hash, _ipfsCID, block.timestamp);
+    }
+
+    // 5. VERIFY CREDENTIAL (Stays the same)
     function verifyCredential(string memory _hash) public view returns (bool) {
         return documents[_hash];
+    }
+
+    // 6. GET CERTIFICATES
+    // CHANGED: Returns the list of 'Credential' structs
+    function getCertificates(address _student) public view returns (Credential[] memory) {
+        return studentCredentials[_student];
     }
 }
