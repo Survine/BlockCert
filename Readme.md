@@ -24,19 +24,19 @@
 
 ## Table of Contents
 
-- [Overview](#-overview)
-- [Problem Statement](#-problem-statement)
-- [Solution](#-solution)
-- [Features](#-features)
-- [Architecture](#-architecture)
-- [Tech Stack](#-tech-stack)
-- [Installation](#-installation)
-- [Usage](#-usage)
-- [API Reference](#-api-reference)
-- [Smart Contract](#-smart-contract)
-- [Project Structure](#-project-structure)
-- [Roadmap](#-roadmap)
-- [Acknowledgments](#-acknowledgments)
+- [Overview](#overview)
+- [Problem Statement](#problem-statement)
+- [Solution](#solution)
+- [Features](#features)
+- [Architecture](#architecture)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Reference](#api-reference)
+- [Smart Contract](#smart-contract)
+- [Project Structure](#project-structure)
+- [Roadmap](#roadmap)
+- [Acknowledgments](#acknowledgments)
 
 ---
 
@@ -464,6 +464,11 @@ blockchain/
 - [ ] Email notifications
 
 ### Version 2.0 (Planned)
+- [ ] **File Hashing → Data Hashing Migration** - Instead of hashing entire PDF files, we will transition to hashing structured credential data (name, degree, date, institution, etc.). This approach offers several advantages:
+  - **Smaller hash inputs** - More gas-efficient blockchain transactions
+  - **Flexible verification** - Verify credentials without needing the original file
+  - **Selective disclosure** - Students can share specific fields without revealing entire documents
+  - **Standardization** - Enables interoperability between different credential systems
 - [ ] Multi-chain support (Polygon, BSC)
 - [ ] Credential templates
 - [ ] Organization dashboard with analytics
@@ -484,11 +489,40 @@ blockchain/
 
 ## Acknowledgments
 
-- [Ethereum Foundation](https://ethereum.org/) - Blockchain platform
-- [Hardhat](https://hardhat.org/) - Development environment
-- [Pinata](https://pinata.cloud/) - IPFS pinning service
-- [Alchemy](https://www.alchemy.com/) - Blockchain infrastructure
-- [OpenZeppelin](https://openzeppelin.com/) - Smart contract resources
+This project was made possible by leveraging several excellent technologies and services. Here's why we chose each one:
+
+### 🦊 MetaMask
+- **Why we use it:** MetaMask is the most widely adopted Ethereum wallet, making it easy for users to interact with our dApp without needing to understand the underlying blockchain complexity.
+- **Benefits:** Browser extension integration, secure key management, and seamless transaction signing. Users can easily switch between networks (mainnet, testnets) and manage multiple accounts.
+- **Free to use:** MetaMask is completely free to download and use. Users only pay network gas fees for transactions.
+
+### ⚗️ Alchemy
+- **Why we use it:** Alchemy provides reliable RPC (Remote Procedure Call) endpoints to communicate with the Ethereum network without running our own node.
+- **Benefits:** 99.9% uptime, enhanced APIs for better blockchain data access, built-in analytics, and excellent documentation.
+- **Free tier:** Alchemy offers a generous free tier with 300 million compute units per month, perfect for development and small-scale production apps.
+
+### 🪙 Sepolia Testnet & Free ETH
+- **Why Sepolia:** Sepolia is Ethereum's recommended testnet for dApp development. It mirrors mainnet behavior without real financial risk.
+- **Getting Free Test ETH:** We obtained free Sepolia ETH from faucets:
+  - [Alchemy Sepolia Faucet](https://sepoliafaucet.com/) - 0.5 ETH/day with Alchemy account
+  - [Infura Sepolia Faucet](https://www.infura.io/faucet/sepolia) - Free test ETH
+  - [Google Cloud Sepolia Faucet](https://cloud.google.com/application/web3/faucet/ethereum/sepolia) - 0.05 ETH per request
+- **Note:** Test ETH has no real value and is only for development purposes.
+
+### 🔨 Hardhat
+- **Why we use it:** Hardhat is the industry-standard Ethereum development environment, offering superior debugging, testing, and deployment tools.
+- **Benefits:** Local blockchain for testing, Solidity stack traces, console.log in contracts, and seamless integration with Ethers.js.
+- **Free & Open Source:** Completely free to use under MIT license.
+
+### 📌 Pinata (IPFS)
+- **Why we use it:** Pinata provides reliable IPFS pinning to ensure our uploaded documents remain accessible on the decentralized web.
+- **Benefits:** Easy-to-use API, dedicated gateways for fast retrieval, and persistent storage (files won't be garbage collected).
+- **Free tier:** 500 files and 500MB storage free, sufficient for development and small-scale usage.
+
+### Additional Resources
+- [Ethereum Foundation](https://ethereum.org/) - The foundation behind Ethereum blockchain
+- [Solidity Documentation](https://docs.soliditylang.org/) - Official Solidity language docs
+- [Ethers.js](https://docs.ethers.org/) - Lightweight library for Ethereum interaction
 
 ---
 
